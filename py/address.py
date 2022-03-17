@@ -12,17 +12,17 @@ class addressG() :
 
     def set(self):
 
-        with open("./state.txt" , 'r' , encoding='utf8') as f :
+        with open("./files/txt/state.txt" , 'r' , encoding='utf8') as f :
 
             for x in f :
                 self.state.append(x.replace("\n", ""))      #-------------- state
 
-        with open("./zcode.txt" , 'r' , encoding='utf8') as f :
+        with open("./files/txt/zcode.txt" , 'r' , encoding='utf8') as f :
 
             for x in f :
                 self.zcode.append(x.replace("\n", ""))      #-------------- zcode
 
-        with open("./city2.txt" , 'r' , encoding='utf8') as f :
+        with open("./files/txt/city2.txt" , 'r' , encoding='utf8') as f :
 
             data = f.read()
             list = data.split("\n")
@@ -36,13 +36,13 @@ class addressG() :
                     self.city.append(row)                   #-------------- city
                     row = []
 
-        with open("./street.txt" ,'r' , encoding='utf8') as f :
+        with open("./files/txt/street.txt" ,'r' , encoding='utf8') as f :
 
             for x in f :
                 self.street.append(x.replace("\n", ""))     #-------------- street
         
 
-        with open("./alley.txt" ,'r' , encoding='utf8') as f :
+        with open("./files/txt/alley.txt" ,'r' , encoding='utf8') as f :
 
             for x in f :
                 x = x.replace(" ", "")

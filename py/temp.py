@@ -2,7 +2,7 @@ from unidecode import unidecode
 #   bnum - bname - wnum - enum - gnum - anum - address - contract - manager - parking - warehouse
 
 
-with open("./temp.txt", 'r' , encoding='utf8') as f:
+with open("./files/txt/temp.txt", 'r' , encoding='utf8') as f:
     c = f.read().splitlines()
     print(c)
     zcode = []
@@ -14,10 +14,10 @@ with open("./temp.txt", 'r' , encoding='utf8') as f:
         state.append(c[x])
     
 print(zcode)
-with open("./zcode.txt", 'w' , encoding='utf8') as f:
+with open("./files/txt/zcode.txt", 'w' , encoding='utf8') as f:
     for x in zcode :
         f.write(unidecode(x+"\n"))
 print(state)
-with open("./state.txt", 'w' , encoding='utf8') as f:
+with open("./files/txt/state.txt", 'w' , encoding='utf8') as f:
     for x in state :
         f.write(x+"\n")
