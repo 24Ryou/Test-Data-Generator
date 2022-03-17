@@ -12,17 +12,17 @@ class addressG() :
 
     def set(self):
 
-        with open("./files/txt/state.txt" , 'r' , encoding='utf8') as f :
+        with open("../files/txt/state.txt" , 'r' , encoding='utf8') as f :
 
             for x in f :
                 self.state.append(x.replace("\n", ""))      #-------------- state
 
-        with open("./files/txt/zcode.txt" , 'r' , encoding='utf8') as f :
+        with open("../files/txt/zcode.txt" , 'r' , encoding='utf8') as f :
 
             for x in f :
                 self.zcode.append(x.replace("\n", ""))      #-------------- zcode
 
-        with open("./files/txt/city2.txt" , 'r' , encoding='utf8') as f :
+        with open("../files/txt/city2.txt" , 'r' , encoding='utf8') as f :
 
             data = f.read()
             list = data.split("\n")
@@ -36,19 +36,19 @@ class addressG() :
                     self.city.append(row)                   #-------------- city
                     row = []
 
-        with open("./files/txt/street.txt" ,'r' , encoding='utf8') as f :
+        with open("../files/txt/street.txt" ,'r' , encoding='utf8') as f :
 
             for x in f :
                 self.street.append(x.replace("\n", ""))     #-------------- street
         
 
-        with open("./files/txt/alley.txt" ,'r' , encoding='utf8') as f :
+        with open("../files/txt/alley.txt" ,'r' , encoding='utf8') as f :
 
             for x in f :
                 x = x.replace(" ", "")
                 self.alley.append(x.replace("\n", ""))     #-------------- alley
         
-        self.no = random.randint(0,999)                     #-------------- No.
+        self.no = "پلاک"+" "+ str(random.randint(0,99))                     #-------------- No.
     
     def get(self) :
         
@@ -67,6 +67,6 @@ class addressG() :
         address.append(street)                              #------------  street
         address.append(alley)                               #------------  alley
         address.append(self.no)                             #------------  No.
-
+       
         return address
 

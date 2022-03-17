@@ -1,4 +1,4 @@
-from unidecode import unidecode
+""" from unidecode import unidecode
 #   bnum - bname - wnum - enum - gnum - anum - address - contract - manager - parking - warehouse
 
 
@@ -20,4 +20,10 @@ with open("./files/txt/zcode.txt", 'w' , encoding='utf8') as f:
 print(state)
 with open("./files/txt/state.txt", 'w' , encoding='utf8') as f:
     for x in state :
-        f.write(x+"\n")
+        f.write(x+"\n") """
+
+
+import rstr
+
+a = rstr.xeger(r'[0-9]{8}')
+print(a)

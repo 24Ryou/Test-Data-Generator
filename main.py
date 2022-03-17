@@ -1,4 +1,5 @@
 from py.Person import personG
+from py.address import addressG
 
-c = personG()
-c.get(10)
+p = personG()
+a = addressG()
