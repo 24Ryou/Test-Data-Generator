@@ -47,7 +47,6 @@ class buildingG() :
                     self.address +=str(x) +  " - "
                 self.address = self.address[6:-2]
                 self.phone = str(address[0])+rstr.xeger(r'[0-9]{8}')
-                print(address[0])
                 self.water = rstr.xeger(r'[0-9]{1}\d[1]{1}\d[0-9]{3}\d[0-9]{8}')
                 self.electricty = rstr.xeger(r'[0-9]{1}\d[2]{1}\d[0-9]{3}\d[0-9]{8}')
                 self.gas = rstr.xeger(r'[0-9]{1}\d[3]{1}\d[0-9]{3}\d[0-9]{8}')
