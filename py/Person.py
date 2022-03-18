@@ -15,13 +15,13 @@ class personG():
 
     def set(self) :
 
-        with open("./files/txt/boys.txt" , 'r' , encoding='utf8') as f:
+        with open("../files/txt/boys.txt" , 'r' , encoding='utf8') as f:
             #bl =[]
             for x in f:
                 self.boys.append(x[:x.find(":")])
             #print(bl)
 
-        with open("./files/txt/girls.txt" , 'r' , encoding='utf') as g:
+        with open("../files/txt/girls.txt" , 'r' , encoding='utf') as g:
            # gl =[]
             for x in g:
                 self.girls.append(x[:x.find(":")])
@@ -32,7 +32,7 @@ class personG():
         for i in gl :
             self.girls.append(i) """
 
-        with open("./files/txt/lastname.txt" , 'r' , encoding='utf') as g:
+        with open("../files/txt/lastname.txt" , 'r' , encoding='utf') as g:
             ln = g.read().splitlines()
 
             self.lastname = ln
@@ -44,7 +44,7 @@ class personG():
         personG.set(self)
 
 
-        with open('./files/person.csv' , 'w' , newline='' , encoding="utf8") as f:
+        with open('../files/person.csv' , 'w' , newline='' , encoding="utf8") as f:
 
             #fieldnames = ['name','lname','phone','id','age','gender','access']
             

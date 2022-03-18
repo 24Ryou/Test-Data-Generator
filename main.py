@@ -1,5 +1,8 @@
 from py.Person import personG
-from py.address import addressG
+from py.building import buildingG
+from py.apartment import apartmentG
 
 p = personG()
-a = addressG()
+b = buildingG()
+a = apartmentG()
+a.get(10)

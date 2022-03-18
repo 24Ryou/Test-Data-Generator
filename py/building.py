@@ -59,7 +59,8 @@ class buildingG() :
                 self.warehouse = "../files/txt/warehouse.txt"
                 self.number = rstr.xeger(r'[0-9]{5,10}')
 
-                thewriter.writerow([str(self.number) , str(random.choice(self.name)) ,self.phone, self.water , self.electricty , self.gas , self.apartment ,
-                 self.address , self.contract , self.manager , self.parking , self.warehouse])
+                thewriter.writerow([str(self.number) , str(random.choice(self.name)) ,self.phone, self.water , 
+                self.electricty , self.gas , self.apartment , self.address , self.contract , self.manager , 
+                self.parking , self.warehouse])
 
                 self.address = ""
