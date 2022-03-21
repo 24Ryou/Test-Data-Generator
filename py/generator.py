@@ -7,6 +7,8 @@ cl = csv_list()
 r = rnd()
 a = addressG()
 tl = txt_list()
+d = dateG()
+p = passwordG()
 
 #               -----------------------------------  person section  ------------------------------  
           
@@ -115,7 +117,7 @@ apt_info = ['../files/txt/aptinfo.txt']*10 #replace with n
 apt_charge = r.chargecostlist(10)
 aptlist = []
 #aptnumber.append(random.randint(1,int(col)))
-aptnumber = random.sample(range(int(col)), 10)
+aptnumber = random.sample(range(int(col)), 11)
 for i in range(people) :
     wdata = watercode + "-" + str(aptnumber[i])
     edata = electricitycode + "-" + str(aptnumber[i])
@@ -137,8 +139,30 @@ for i in range(10) :
     aptlist.append(data)
 cl.set2csv('../files/apartment.csv' , aptlist)
 
-#               -----------------------------------  person section  ------------------------------   
+#               -----------------------------------  account section  ------------------------------   
 
-
+#pass - pid - bid -aptid - creationdate - transaction - messeage - file
+acc_pass = '' #replace with n
+acc_pid =  persons_temp # from previous section
+acc_bid = buildings_temp[0]
+acc_aptid = aptnumber
+acc_creation = d.getdate(10)
+acc_transaction = '../files/txt/transaction.txt'
+acc_message = '../files/txt/message.txt'
+acc_file = '../files/txt/file.txt'
+accountlist = []
+for i in range(10) :
+    data= []
+    acc_pass = p.passwordGenerator(10)
+    data.append(acc_pass)
+    data.append(acc_pid[i])
+    data.append(acc_bid)
+    data.append(acc_aptid[i])
+    data.append(acc_creation[i])
+    data.append(acc_transaction)
+    data.append(acc_message)
+    data.append(acc_file)
+    accountlist.append(data)
+cl.set2csv('../files/account.csv' , accountlist)
 
 #               -----------------------------------  person section  ------------------------------            

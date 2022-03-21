@@ -147,7 +147,7 @@ class dateG() :
         self.date = []
 
 
-    def gettime(self, n) :
+    def getdate(self, n) :
         
         dateG.set(self)
 
