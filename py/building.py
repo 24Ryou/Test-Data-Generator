@@ -19,7 +19,6 @@ class buildingG() :
         self.manager = ""
         self.parking = ""
         self.warehouse = ""
-        self
 
     def set(self) :
 
@@ -53,7 +52,7 @@ class buildingG() :
                 self.apartment = str(random.randint(10,20))
                 self.contract = "../files/1.pdf"
                 self.manager = rstr.xeger(r'[1-9]{1}\d[0-9]{9}')
-                with open('../files/help.txt' , 'w' , encoding='utf8') as f :
+                with open('../files/help.txt' , 'w' ,newline="", encoding='utf8') as f :
                     f.write("manager id : " + str(self.manager)+"\n" )
                 self.parking = "../files/txt/parking.txt"
                 self.warehouse = "../files/txt/warehouse.txt"

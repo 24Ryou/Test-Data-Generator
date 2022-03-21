@@ -1,8 +1,6 @@
 # aptnum(0-30) - wcode(+aptnum) = ecode = gcode - owner(persons id) - apttype (tinyint 0,1 >> 0 = r , 1 = c) - 
 # aptinfo(txt) - aptcharge(num)
 
-from re import A
-from secrets import randbelow
 from building import buildingG
 from Person import personG
 import csv 
