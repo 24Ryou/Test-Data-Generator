@@ -1,5 +1,3 @@
-from asyncore import write
-from opcode import opname
 import random
 import array
 import rstr
@@ -174,10 +172,13 @@ class csv_list() :
                 d.append(row[:])
         return d
 
-    def set2csv(self , path , list) :
+    def set2csv(self , path , list2) :
+        df = pd.read_csv(path)
+        headers = list(df.columns)
         with open(path , 'w' , newline='' , encoding='utf8')  as file :
             thewriter = csv.writer(file)
-            thewriter.writerows(list)
+            list2.insert(0,headers)
+            thewriter.writerows(list2)
             
     def getcolumn(self, path, column , colnames) :
         df = pd.read_csv(path ,names = colnames , header=None)
@@ -324,7 +325,7 @@ class addressG() :
                 x = x.replace(" ", "")
                 self.alley.append(x.replace("\n", ""))     #-------------- alley
         
-        self.no = "پلاک"+" "+ str(random.randint(0,99))                     #-------------- No.
+        self.no = "پلاک"+" "+ str(random.randint(0,99))     #-------------- No.
     
     def get(self) :
         
