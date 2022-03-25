@@ -3,6 +3,7 @@ import array
 import rstr
 import csv
 import pandas as pd
+import os
 
 def passwordGenerator(n) :
             # maximum length of password needed
@@ -134,7 +135,127 @@ def date2list(n) :
             s = years + "-" + months + "-" + days
             date.append(s)
         return date
+    
+def fileid(n) :
+    """generate list for fileid (file.csv)
+
+    Args:
+        n (str): number of file id to generate
+    """    
+    number = list(range(200))
+    rnum = random.sample((number),n)
+    return rnum
       
+def filespath(path) :
+    """return all path of files in a directory into list
+    """    
+    list = os.listdir(path)
+    return list
+
+def filesname(list):
+    """return all names of files in directory
+
+    Args:
+        path (str): path of directiry to search
+    """    
+    list2 = []
+    for i in list:
+        list2.append(i.split(".")[0])
+    return list2
+
+def filestype(list) :
+    """return all files foramt in directory
+
+    Args:
+        path (str): path of dir
+    """    
+    list2 = []
+    for i in list:
+        list2.append(i.split(".")[-1])
+    return list2
+    
+def checkAG(path,fieldnames,column1,column2) :
+    """return age and gender of person in .csv
+
+    Args:
+        path (str): path of .csv
+    """  
+    ages = getcolumn(path,column1,fieldnames)
+    gender = getcolumn(path,column2,fieldnames)
+    list = []
+    n = len(ages)
+    for i in range(n) :   
+        data = ""
+        if(int(gender[i]) == 2):   #set code for gender-age : 21 = female-youngadult 22 = femaleadult 23 = female-middleage
+            data +="2"
+            if(int(ages[i]) <=25):
+                data += "1"
+            elif(25 < int(ages[i]) <50):
+                data += "2"
+            elif(50<=int(ages[i])):
+                data += "3"
+        elif(int(gender[i]) == 1) :  #set code for gender-age : 11 = male-youngadult 22 = male-adult 23 = male-middleage
+            data+= "1"
+            if(int(ages[i]) <=25):
+                data += "1"
+            elif(25 < int(ages[i]) <50):
+                data += "2"
+            elif(50<=int(ages[i])):
+                data += "3"
+        list.append(data)
+    return list
+        
+def getphotoAG(list) :
+    """return list of photos path - get list fo checkAG >>> output help to asssing right path to person
+    base on their age and gender
+
+    Args:
+        list (list[str]): list[index] = code that show what folder search for photo
+    """ 
+    #['boys-adult', 'boys-middleage', 'boys-youngadult', 'girls-adult', 'girls-middleage-r20', 'girls-youngadult']
+    p = os.listdir('../files/img')  
+    listfiles = []
+    listphoto = []
+    listfiles = []
+    n = len(list)
+    for i in range(n) :
+        x = str(list[i])
+        path = "../files/img/"
+        r20 = random.randint(0,19)
+        r30 = random.randint(0,29)
+        if(x=="11"):    # boys-youngadult
+            listfiles = os.listdir(path)
+            path += "/"+listfiles[r30]
+            listphoto.append(path)
+        if(x=="12"):    # boys-adult
+            path += p[0]
+            listfiles = os.listdir(path)
+            path += "/"+listfiles[r30]
+            listphoto.append(path)
+        if(x=="13"):    # boys-middleage
+            path += p[1]
+            listfiles = os.listdir(path)
+            path += "/"+listfiles[r30]
+            listphoto.append(path)
+        if(x=="21"):    # girls-youngadult
+            path += p[5]
+            listfiles = os.listdir(path)
+            path += "/"+listfiles[r30]
+            listphoto.append(path)
+        if(x=="22"):    # girls-adult
+            path += p[3]
+            listfiles = os.listdir(path)
+            path += "/"+listfiles[r30]
+            listphoto.append(path)
+        if(x=="23"):    # girls-middleage
+            path += p[4]
+            listfiles = os.listdir(path)
+            path += "/"+listfiles[r20]
+            listphoto.append(path)
+            
+    return listphoto
+            
+
 def person(n) : # func that generate number of pepople fo csv base on what is 'n' == how much person 
     
     # extracting the .txt files to list
@@ -253,3 +374,40 @@ def account(n) :
         data.append(date[i])
         account.append(data)
     set2csv('../files/account.csv',account)
+    
+def file (n) :
+    """how much file generate
+
+    Args:
+        n (_type_): number of files in file table(file.csv)
+    """    
+    id = fileid(n)
+    path = '../files/person.csv'
+    fieldsnames = ['0','1','2','3','4','5','6']
+    column = '2'
+    accountid = getcolumn(path , column , fieldsnames)
+    column1 = '4'
+    column2 = '5'
+    listAG = checkAG(path,fieldsnames,column1,column2)
+    #print(listAG)
+    pathlist = getphotoAG(listAG)
+    listtemp = []
+    for i in pathlist :
+        listtemp.append(i.split("/")[-1])
+    filenames = filesname(listtemp)
+    filetypes = filestype(listtemp)
+    accpath = '../files/account.csv'
+    fields = ['0','1','2','3','4']
+    date = getcolumn(accpath,'4',fields)
+    file = []
+    for i in range(n) :
+        data = []
+        data.append(id[i])
+        data.append(accountid[i])
+        data.append(filenames[i])
+        data.append(filetypes[i])
+        data.append(pathlist[i])
+        data.append(date[i])
+        file.append(data)
+    set2csv("../files/file.csv" , file)
+        
