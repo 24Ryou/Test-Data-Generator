@@ -10,3 +10,5 @@ from stuff import *
 #apartment(pn)
 #account(pn)
 #file(pn)
+#messages(pn)
+transaction(20)

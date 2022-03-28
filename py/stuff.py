@@ -116,7 +116,7 @@ def getcolumn(path, column , colnames) :
 def chargecostlist(n): #  n =  number of data in list 
         list = []
         for i in range(n) : 
-            list.append(rstr.xeger(r'[1-9]{1}[0]{7}'))
+            list.append(rstr.xeger(r'[1-9]{1}[0]{5,7}'))
         return list     
 
 def date2list(n) :
@@ -134,8 +134,23 @@ def date2list(n) :
                 days =str(random.randint(1,31))
             s = years + "-" + months + "-" + days
             date.append(s)
-        return date
+        return date    
     
+def dateextract(list) :
+    """return 3 list base on input list extract years list, month list, days list
+
+    Args:
+        list (list): list of dates with yyyy-m-d formats
+    """   
+    years = []
+    months = []
+    days = []
+    for i in list :
+        years.append(i.split("-")[0])
+        months.append(i.split("-")[1])
+        days.append(i.split("-")[2])
+    return years,months,days
+
 def fileid(n) :
     """generate list for fileid (file.csv)
 
@@ -255,7 +270,6 @@ def getphotoAG(list) :
             
     return listphoto
             
-
 def person(n) : # func that generate number of pepople fo csv base on what is 'n' == how much person 
     
     # extracting the .txt files to list
@@ -411,3 +425,77 @@ def file (n) :
         file.append(data)
     set2csv("../files/file.csv" , file)
         
+def messages(n):
+    """generate list of message randomly
+
+    Args:
+        n (int,str): show how much data we need to generate
+    """ 
+    id = fileid(n)   
+    path = '../files/txt/message.txt'
+    listmessage = getfromtxt(path)
+    path2 = '../files/person.csv'
+    fieldsnames = ['0','1','2','3','4','5','6']
+    column = '2'
+    accountid = getcolumn(path2 , column , fieldsnames)
+    path3 = '../files/account.csv'
+    fieldsnames2 = ['0','1','2','3','4']
+    column2 = '4'
+    date = getcolumn(path3,column2,fieldsnames2)
+    messages = []
+    random.shuffle(listmessage)
+    for i in range(n) :
+        data = []
+        data.append(id[i])
+        data.append(accountid[i])
+        data.append(listmessage[i])
+        data.append(date[i])
+        messages.append(data)
+    set2csv('../files/message.csv',messages)
+
+def transaction(n):
+    """generate list of transaction base on transaction table
+
+    Args:
+        n (int): jow much data we need
+    """    
+    
+    costlist = chargecostlist(n*n)
+    path = '../files/account.csv'
+    fieldnames = ['0','1','2','3','4']
+    column = '4'
+    datelist = getcolumn(path,column,fieldnames)
+    a = dateextract(datelist)
+    years , months , days = a
+    column = '2'
+    accountid = getcolumn(path , "0" , fieldnames)
+    transaction = []
+    id = 0
+    day = ['10','11','12','13','14','15','16','17','18','19','20']
+    string = ["پرداخت شارژ ساختمان"]
+    for i in range(len(years)) :
+        y = 2022 - int(years[i])
+        m = int(months[i])
+        while y != 0 :
+            id = id + 1
+            if m != 12 :
+                m = m+1
+                data = []
+                data.append(id)
+                data.append(accountid[i])
+                data.append(random.choice(costlist))
+                data.append(string[0])
+                data.append(str(2022-y) + "-" + str(m) + "-" + random.choice(day))
+                transaction.append(data)
+            elif m == 12 :
+                y = y-1
+                m = 1
+                data = []
+                data.append(id)
+                data.append(accountid[i])
+                data.append(random.choice(costlist))
+                data.append(string[0])
+                data.append(str(2022-y) + "-" + str(m) + "-" + random.choice(day))
+                transaction.append(data)
+    set2csv('../files/transaction.csv' , transaction)
+  
