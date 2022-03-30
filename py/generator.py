@@ -11,4 +11,4 @@ from stuff import *
 #account(pn)
 #file(pn)
 #messages(pn)
-transaction(20)
+#transaction(pn)
