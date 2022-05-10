@@ -6,8 +6,8 @@ pn = 20
 
 # ? whatevr csv you need you can use to generate(just un-comment it)
 
-person(pn)
-apartment(pn)
+#person(pn)
+#apartment(pn)
 account(pn)
 #file(pn)
 #messages(pn)

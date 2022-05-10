@@ -74,7 +74,7 @@ def getfromtxt(path):
 def phonelist(n):
     list = []
     for i in range(n):
-        list.append("09"+str(random.randint(100000000, 999999999)))
+        list.append("98"+str(random.randint(900000000, 999999999)))
     return list
 
 
@@ -327,17 +327,17 @@ def person(n):  # func that generate number of pepople fo csv base on what is 'n
         # select beetween boy or girl name base on their gender
         x = random.randint(1, 2)
         if x == 2:
+            data.append(phone[i])
             data.append(girl[i])
             data.append(lastname[i])
-            data.append(phone[i])
             data.append(id[i])
             data.append(age[i])
             data.append("2")  # set the gender to girl
             data.append(access[i])
         else:
+            data.append(phone[i])
             data.append(boy[i])
             data.append(lastname[i])
-            data.append(phone[i])
             data.append(id[i])
             data.append(age[i])
             data.append("1")  # set the gender to boy
@@ -397,7 +397,7 @@ def account(n):
     """
     fieldnames = ['0', '1', '2', '3', '4', '5','6']   # genaret number of column of person.csv for geting the owner id from it
     path = r'D:\Ali\Projects\Git-Repositories\Test-Data-Generator\files\person.csv'
-    username = getcolumn(path, "2", fieldnames)
+    username = getcolumn(path, "0", fieldnames)
     password = []
     for i in range(n):
         password.append(passwordGenerator(10))  # 10 =  length of passwrod
