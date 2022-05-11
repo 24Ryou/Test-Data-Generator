@@ -417,6 +417,7 @@ def account(n):
         data.append(charge[i])
         data.append(random.choice(rent))
         data.append(credit)
+        data.append(credit)
         data.append(date[i])
         account.append(data)
     set2csv(r"D:\Ali\Projects\Git-Repositories\Test-Data-Generator\files\account.csv", account)
